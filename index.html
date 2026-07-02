@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentinel AML — Sign In</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="landing">
+  <div class="landing-card">
+    <div class="landing-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2 3 6v6c0 5.25 3.84 9.74 9 11 5.16-1.26 9-5.75 9-11V6l-9-4Z"/>
+        <path d="m9 12 2 2 4-4"/>
+      </svg>
+    </div>
+    <h1>Sentinel AML</h1>
+    <p class="lede">AI-assisted financial crime investigation platform. Sign in to access the alert queue, investigation workspace, and compliance tools.</p>
+    <div class="landing-stat-row">
+      <div class="landing-stat"><div class="v">100</div><div class="l">Open Alerts</div></div>
+      <div class="landing-stat"><div class="v">13</div><div class="l">Typologies</div></div>
+      <div class="landing-stat"><div class="v">8</div><div class="l">Investigators</div></div>
+    </div>
+    <form onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+      <div class="field">
+        <label class="field-label">Work Email</label>
+        <input class="text-input" type="email" value="a.whitfield@sentinelbank.com" required>
+      </div>
+      <div class="field">
+        <label class="field-label">Password</label>
+        <input class="text-input" type="password" value="••••••••">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:4px;">
+        Enter Investigation Platform
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+    <div style="text-align:center; margin-top:18px; display:flex; gap:16px; justify-content:center;">
+      <a href="admin.html" style="font-size:12px; color:var(--text-muted); text-decoration:none; font-weight:500;">
+        🔐 Admin Portal →
+      </a>
+    </div>
+    <div class="landing-foot">
+      <span class="tag">Training simulator</span> — all data is synthetic and generated for educational purposes only.
+    </div>
+  </div>
+</div>
+</body>
+</html>

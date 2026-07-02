@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Sentinel AML</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2 3 6v6c0 5.25 3.84 9.74 9 11 5.16-1.26 9-5.75 9-11V6l-9-4Z"/><path d="m9 12 2 2 4-4"/>
+        </svg>
+      </div>
+      <div><div class="brandname">Sentinel AML</div><div class="brandsub">Investigation Suite</div></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Workspace</div>
+      <button class="nav-item active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+        <span>Dashboard</span>
+      </button>
+      <button class="nav-item" data-view="alerts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.7 3.86a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <span>Alert Queue</span><span class="badge-count">100</span>
+      </button>
+      <button class="nav-item" data-view="cases">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h3.93a2 2 0 0 1 1.66.9L12 8h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>
+        <span>Cases</span>
+      </button>
+      <button class="nav-item" data-view="reports">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+        <span>Reports</span>
+      </button>
+      <div class="nav-section-label">System</div>
+      <a class="nav-item" href="admin.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5.25 3.84 9.74 9 11 5.16-1.26 9-5.75 9-11V6l-9-4Z"/></svg>
+        <span>Admin Portal</span>
+      </a>
+      <button class="nav-item" data-view="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.62a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+        <span>Settings</span>
+      </button>
+      <a class="nav-item" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+        <span>Sign Out</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="avatar">AW</div>
+      <div class="who"><div class="name">A. Whitfield</div><div class="role">Senior Investigator</div></div>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar">
+      <div class="topbar-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="globalSearchInput" placeholder="Search alerts, customers, typologies…">
+      </div>
+      <div class="topbar-spacer"></div>
+      <div class="topbar-clock" id="topbarClock"></div>
+      <div class="topbar-actions">
+        <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dot"></span></button>
+      </div>
+    </header>
+
+    <div class="page-wrap">
+
+      <!-- DASHBOARD -->
+      <section class="view-section active" id="view-dashboard">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow">Overview</div>
+            <h1>Investigation Dashboard</h1>
+            <p class="sub">100 open alerts across 13 AML typologies. Click any typology card to filter cases.</p>
+          </div>
+          <button class="btn btn-primary" data-view="alerts">Open Alert Queue →</button>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card c-total"><div class="accent-bar"></div><div class="kpi-label">Total Alerts</div><div class="kpi-value" id="kpiTotal">—</div><div class="kpi-trend">All typologies</div></div>
+          <div class="kpi-card c-high"><div class="accent-bar"></div><div class="kpi-label">High Risk</div><div class="kpi-value" id="kpiHigh">—</div><div class="kpi-trend">Priority review</div></div>
+          <div class="kpi-card c-medium"><div class="accent-bar"></div><div class="kpi-label">Medium Risk</div><div class="kpi-value" id="kpiMedium">—</div><div class="kpi-trend">Standard queue</div></div>
+          <div class="kpi-card c-low"><div class="accent-bar"></div><div class="kpi-label">Low Risk</div><div class="kpi-value" id="kpiLow">—</div><div class="kpi-trend">Monitor only</div></div>
+          <div class="kpi-card c-open"><div class="accent-bar"></div><div class="kpi-label">Open Cases</div><div class="kpi-value" id="kpiOpen">—</div><div class="kpi-trend">Active investigation</div></div>
+          <div class="kpi-card c-closed"><div class="accent-bar"></div><div class="kpi-label">Resolved</div><div class="kpi-value" id="kpiClosed">—</div><div class="kpi-trend">Closed / Escalated</div></div>
+        </div>
+
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-head"><h3>Alerts by Typology</h3><span class="hint">Click any card to view cases</span></div>
+          <div class="typology-grid" id="typologyGrid"></div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom:16px;">
+          <div class="card">
+            <div class="card-head"><h3>Recent Alerts</h3><span class="hint">Latest 8</span></div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Alert ID</th><th>Customer</th><th>Risk</th><th>Typology</th><th>Amount</th><th>Status</th></tr></thead>
+                <tbody id="recentAlertsTable"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Risk Distribution</h3><span class="hint">By alert count</span></div>
+            <div id="riskDonut"></div>
+            <hr class="section-divider">
+            <div class="card-head" style="margin-bottom:10px;"><h3>Investigator Load</h3><span class="hint">Closed / Total</span></div>
+            <div id="investigatorPerf"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h3>Latest Cases</h3><span class="hint">Most recently opened</span></div>
+          <div class="case-grid" id="latestCasesList"></div>
+        </div>
+      </section>
+
+      <!-- ALERT QUEUE -->
+      <section class="view-section" id="view-alerts">
+        <div class="page-head">
+          <div><div class="eyebrow">Investigation</div><h1>Alert Queue</h1><p class="sub">All 100 alerts — search, filter and sort to prioritise your workload.</p></div>
+        </div>
+        <div class="toolbar">
+          <div class="search-input">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="alertSearchInput" placeholder="Search alert, customer, country…">
+          </div>
+          <select class="filter-select" id="filterRisk"><option value="all">All Risk Levels</option><option value="High">High</option><option value="Medium">Medium</option><option value="Low">Low</option></select>
+          <select class="filter-select" id="filterStatus"><option value="all">All Statuses</option><option value="Open">Open</option><option value="Escalated">Escalated</option><option value="Closed - No Action">Closed - No Action</option></select>
+          <select class="filter-select" id="filterTypology"></select>
+          <div class="toolbar-spacer"></div>
+        </div>
+        <div class="result-count" id="alertResultCount"></div>
+        <div class="card" style="padding:0;">
+          <div class="table-wrap">
+            <table class="data-table" id="alertQueueTable">
+              <thead><tr>
+                <th data-sort="alertId">Alert ID <span class="sort-arrow">↕</span></th>
+                <th data-sort="customerName">Customer <span class="sort-arrow">↕</span></th>
+                <th data-sort="riskLevel">Risk <span class="sort-arrow">↕</span></th>
+                <th data-sort="typology">Typology <span class="sort-arrow">↕</span></th>
+                <th data-sort="country">Country <span class="sort-arrow">↕</span></th>
+                <th data-sort="amount">Amount <span class="sort-arrow">↕</span></th>
+                <th data-sort="status">Status <span class="sort-arrow">↕</span></th>
+                <th data-sort="investigator">Investigator <span class="sort-arrow">↕</span></th>
+                <th data-sort="date">Date <span class="sort-arrow">↕</span></th>
+                <th></th>
+              </tr></thead>
+              <tbody id="alertQueueBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- CASES -->
+      <section class="view-section" id="view-cases">
+        <div class="page-head"><div><div class="eyebrow">Investigation</div><h1>Cases</h1><p class="sub">Full case grid — click to open the investigation workspace.</p></div></div>
+        <div class="case-grid" id="casesGridAll"></div>
+      </section>
+
+      <!-- REPORTS -->
+      <section class="view-section" id="view-reports">
+        <div class="page-head">
+          <div><div class="eyebrow">Analytics</div><h1>Reports</h1><p class="sub">Program-level metrics for compliance review.</p></div>
+        </div>
+        <div class="grid-3" style="margin-bottom:16px;">
+          <div class="card"><div class="card-head"><h3>SAR Filing Rate</h3></div><div class="kpi-value mono" style="font-size:26px;" id="reportSarRate">—</div><div class="text-muted" style="font-size:12px;margin-top:5px;">of closed cases filed a SAR</div></div>
+          <div class="card"><div class="card-head"><h3>Avg Alert Amount</h3></div><div class="kpi-value mono" style="font-size:26px;" id="reportAvgAmount">—</div><div class="text-muted" style="font-size:12px;margin-top:5px;">average exposure per alert</div></div>
+          <div class="card"><div class="card-head"><h3>High-Risk Jurisdiction</h3></div><div class="kpi-value mono" style="font-size:26px;" id="reportHighRisk">—</div><div class="text-muted" style="font-size:12px;margin-top:5px;">alerts with high-risk country</div></div>
+        </div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-head"><h3>Typology Breakdown</h3></div>
+          <div id="typologyBars"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Status Overview</h3></div>
+          <div id="reportStatusBars"></div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="view-section" id="view-settings">
+        <div class="page-head"><div><div class="eyebrow">Account</div><h1>Settings</h1></div></div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-head"><h3>AI Assistant</h3></div>
+          <div class="settings-row"><div><div class="lbl">AI Provider</div><div class="desc">Configure in <code class="mono">js/ai.js</code> — currently using simulated offline responses</div></div><span class="typology-tag">Not Connected</span></div>
+          <div class="settings-row"><div><div class="lbl">Markdown rendering</div><div class="desc">Render AI responses with headings and lists</div></div><div class="switch on" onclick="this.classList.toggle('on')"><div class="knob"></div></div></div>
+        </div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-head"><h3>Notifications</h3></div>
+          <div class="settings-row"><div><div class="lbl">High-risk alert notifications</div><div class="desc">Notify when a high-risk alert is opened</div></div><div class="switch on" onclick="this.classList.toggle('on')"><div class="knob"></div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Session</h3></div>
+          <div class="settings-row"><div><div class="lbl">Signed in as</div><div class="desc">A. Whitfield · Senior Investigator</div></div><a class="btn btn-sm" href="index.html">Sign Out</a></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/dashboard.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  await SentinelData.loadAll();
+  const cases = SentinelData.getCases();
+  const HIGH_RISK = ["Iran","North Korea","Myanmar","Afghanistan","Syria","Yemen","South Sudan","Democratic Republic of Congo","Venezuela","Panama (Free Trade Zone)","Cayman Islands","British Virgin Islands","Vanuatu","Laos","Haiti","Nicaragua","Zimbabwe","Libya","Iraq","Somalia"];
+  const avg = cases.reduce((s,c)=>s+c.amount,0)/cases.length;
+  const hr = cases.filter(c=>HIGH_RISK.includes(c.country)).length;
+  const closed = cases.filter(c=>{ const s=CaseStore.getStatus(c.caseId); return s&&s!=='Open'; });
+  const sarFiled = cases.filter(c=>CaseStore.getStatus(c.caseId)==='Escalated');
+  const sarRate = closed.length ? Math.round(sarFiled.length/closed.length*100)+'%' : 'N/A';
+
+  const setText = (id,v) => { const el=document.getElementById(id); if(el)el.textContent=v; };
+  setText('reportSarRate', sarRate);
+  setText('reportAvgAmount', fmtCurrency(avg));
+  setText('reportHighRisk', hr);
+
+  const statusCounts = {};
+  cases.forEach(c => { const s=CaseStore.getStatus(c.caseId)||'Open'; statusCounts[s]=(statusCounts[s]||0)+1; });
+  const colorMap = {'Open':'#2563eb','Escalated':'#dc2626','Closed - No Action':'#6b7280'};
+  const max = Math.max(...Object.values(statusCounts),1);
+  document.getElementById('reportStatusBars').innerHTML = Object.entries(statusCounts).map(([l,c])=>`
+    <div class="bar-row"><div class="bar-label">${l}</div><div class="bar-track"><div class="bar-fill" style="width:${c/max*100}%;background:${colorMap[l]||'var(--accent)'};"></div></div><div class="bar-val">${c}</div></div>
+  `).join('');
+});
+</script>
+</body>
+</html>

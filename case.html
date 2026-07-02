@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Investigation — Sentinel AML</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2 3 6v6c0 5.25 3.84 9.74 9 11 5.16-1.26 9-5.75 9-11V6l-9-4Z"/><path d="m9 12 2 2 4-4"/>
+        </svg>
+      </div>
+      <div><div class="brandname">Sentinel AML</div><div class="brandsub">Investigation Suite</div></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Workspace</div>
+      <a class="nav-item" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg><span>Dashboard</span></a>
+      <a class="nav-item" href="dashboard.html?view=alerts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.7 3.86a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg><span>Alert Queue</span></a>
+      <a class="nav-item active" href="dashboard.html?view=cases"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h3.93a2 2 0 0 1 1.66.9L12 8h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg><span>Cases</span></a>
+      <div class="nav-section-label">System</div>
+      <a class="nav-item" href="admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5.25 3.84 9.74 9 11 5.16-1.26 9-5.75 9-11V6l-9-4Z"/></svg><span>Admin Portal</span></a>
+      <a class="nav-item" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg><span>Sign Out</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="avatar">AW</div>
+      <div class="who"><div class="name">A. Whitfield</div><div class="role">Senior Investigator</div></div>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar">
+      <div class="topbar-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="globalSearchInput" placeholder="Search alerts, customers…">
+      </div>
+      <div class="topbar-spacer"></div>
+      <div class="topbar-clock" id="topbarClock"></div>
+      <div class="topbar-actions">
+        <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dot"></span></button>
+      </div>
+    </header>
+
+    <div class="page-wrap" id="caseRoot">
+
+      <a class="back-link" href="dashboard.html?view=alerts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Alert Queue
+      </a>
+
+      <div class="case-header">
+        <div class="titleblock">
+          <div class="case-icon" id="caseIconInitials">—</div>
+          <div>
+            <h1 id="caseTitle">Loading…</h1>
+            <div class="case-sub" id="caseSub"></div>
+          </div>
+        </div>
+        <div class="flex-row" style="flex-wrap:wrap;gap:8px;">
+          <span id="caseRiskPill"></span>
+          <span id="caseStatusPill"></span>
+          <span id="caseTypologyTag"></span>
+        </div>
+      </div>
+
+      <div class="case-layout">
+
+        <!-- LEFT: Profile + Risk -->
+        <div style="display:flex;flex-direction:column;gap:16px;">
+
+          <div class="card">
+            <div class="card-head"><h3>Customer Profile</h3></div>
+            <div id="customerProfileRows"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Risk Summary</h3></div>
+            <div class="risk-gauge-wrap">
+              <div id="riskGauge"></div>
+              <div class="risk-gauge-score" id="riskScoreLabel">—</div>
+              <div class="risk-gauge-band" id="riskBandLabel">—</div>
+            </div>
+            <div style="margin:14px 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);font-weight:700;">Top Red Flags</div>
+            <div class="flag-list" id="riskFlagsList"></div>
+            <div style="margin:14px 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);font-weight:700;">AML Typology</div>
+            <div class="typology-tag" id="typologyValue" style="display:inline-block;"></div>
+            <div style="margin:14px 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);font-weight:700;">Recommended Action</div>
+            <div class="action-recommend" id="recommendedActionText"></div>
+          </div>
+
+        </div>
+
+        <!-- CENTER: Actions + Tabs -->
+        <div style="display:flex;flex-direction:column;gap:16px;min-width:0;">
+
+          <!-- Investigation Actions -->
+          <div class="card">
+            <div class="card-head"><h3>Investigation Actions</h3><span class="hint" style="color:var(--accent-teal);font-weight:600;">AI-assisted</span></div>
+            <div class="action-grid" id="actionGrid">
+              <button class="action-btn" onclick="analyzeAlert()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Analyze Alert</button>
+              <button class="action-btn" onclick="generateInvestigationSummary()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Investigation Summary</button>
+              <button class="action-btn" onclick="generateSAR()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.7 3.86a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg>Generate SAR</button>
+              <button class="action-btn" onclick="generateRFI()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Generate RFI + Response</button>
+              <button class="action-btn" onclick="explainRiskScore()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Explain Risk Score</button>
+              <button class="action-btn" onclick="recommendAction()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Recommend Next Steps</button>
+              <button class="action-btn" onclick="summarizeCustomer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Summarize Customer</button>
+              <button class="action-btn" onclick="networkAnalysis()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="3"/><circle cx="19" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><path d="M5 9v1a3 3 0 0 0 3 3h1m7-4v1a3 3 0 0 1-3 3h-1"/></svg>Network Analysis</button>
+              <button class="action-btn" onclick="evaluateDecision()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Evaluate Decision</button>
+              <!-- Export — must happen before Close/Escalate -->
+              <button class="action-btn btn-export full" id="exportCasePDFBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+                Export Case PDF (Required before closing)
+              </button>
+            </div>
+
+            <!-- Workflow notice -->
+            <div class="workflow-notice" id="workflowNotice">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.7 3.86a2 2 0 0 0-3.4 0Z"/></svg>
+              Export the case file first to enable Close and Escalate.
+            </div>
+
+            <!-- Close / Escalate buttons -->
+            <div class="workflow-row">
+              <button class="btn btn-success" id="closeCaseBtn" disabled style="flex:1;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                Close — No Action
+              </button>
+              <button class="btn btn-danger" id="escalateCaseBtn" disabled style="flex:1;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6-6 6 6"/><path d="M12 3v12"/><path d="M3 21h18"/></svg>
+                Escalate Case
+              </button>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <div class="card">
+            <div class="tabs">
+              <button class="tab-btn active" data-tab="transactions">Transaction History</button>
+              <button class="tab-btn" data-tab="analysis">Case Analysis</button>
+              <button class="tab-btn" data-tab="rfi">RFI</button>
+              <button class="tab-btn" data-tab="notes">Notes</button>
+              <button class="tab-btn" data-tab="network">Network</button>
+            </div>
+
+            <!-- Transactions tab -->
+            <div class="tab-panel active" id="tab-transactions">
+              <div class="result-count" id="txnCountLabel"></div>
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead><tr><th>Txn ID</th><th>Date</th><th>Amount</th><th>CCY</th><th>Counterparty</th><th>Country</th><th>Channel</th><th>Description</th></tr></thead>
+                  <tbody id="txnTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Case Analysis by Analyst tab -->
+            <div class="tab-panel" id="tab-analysis">
+              <div class="analyst-section">
+                <div class="analyst-head">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  <h4>Case Analysis by Analyst</h4>
+                </div>
+                <div class="analyst-body">
+                  <p style="font-size:12px;color:var(--text-muted);margin:0 0 10px;">Document your investigation findings, conclusions, and rationale. This analysis will be included in the exported case file and viewable by the admin.</p>
+                  <textarea class="note-editor" id="analystAnalysisText" placeholder="Write your case analysis here…
+
+Include:
+• Summary of suspicious activity observed
+• Assessment of the AML typology and red flags
+• Customer explanation review (if RFI was issued)
+• Your conclusion and recommended disposition
+• Any further action required" style="min-height:200px;"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- RFI tab -->
+            <div class="tab-panel" id="tab-rfi">
+              <p style="font-size:12.5px;color:var(--text-secondary);margin:0 0 14px;">Click <strong>Generate RFI + Response</strong> in the actions panel to issue an RFI and receive the simulated customer response.</p>
+
+              <div id="rfiSection" style="display:none;">
+                <!-- RFI Request -->
+                <div class="rfi-block" style="margin-bottom:16px;">
+                  <div class="rfi-block-head">
+                    <h4 style="color:var(--accent);">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      RFI — Request Issued to Customer
+                    </h4>
+                  </div>
+                  <div class="rfi-block-body" id="rfiRequestText"></div>
+                </div>
+
+                <!-- RFI Response -->
+                <div class="rfi-block">
+                  <div class="rfi-block-head">
+                    <h4 style="color:var(--risk-low);">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                      RFI — Customer Response Received
+                    </h4>
+                  </div>
+                  <div class="rfi-block-body rfi-response-body">
+                    <div class="rfi-received-banner" id="rfiReceivedBanner"></div>
+                    <div id="rfiResponseText" style="white-space:pre-wrap;font-size:12.5px;line-height:1.65;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notes tab -->
+            <div class="tab-panel" id="tab-notes">
+              <textarea class="note-editor" id="noteEditor" placeholder="Add a short investigation note — e.g. 'Contacted compliance team regarding sanctions match'…"></textarea>
+              <div style="display:flex;justify-content:flex-end;margin:10px 0 16px;">
+                <button class="btn btn-primary btn-sm" id="addNoteBtn">Add Note</button>
+              </div>
+              <div id="notesList"></div>
+            </div>
+
+            <!-- Network tab -->
+            <div class="tab-panel" id="tab-network">
+              <p style="margin-top:0;font-size:12.5px;color:var(--text-secondary);">Counterparty relationships from flagged transactions.</p>
+              <div class="network-wrap" id="networkGraph"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT: AI Panel -->
+        <div class="ai-panel-col">
+          <div class="ai-panel">
+            <div class="ai-panel-head">
+              <span class="pulse-dot"></span>
+              <div><h3>AI Investigation Assistant</h3><div class="sub">Grounded in this case's live data</div></div>
+            </div>
+            <div class="ai-panel-body" id="aiPanelBody"></div>
+            <div class="ai-panel-foot">
+              <div class="ai-quickrow">
+                <button class="chip" onclick="quickChip('analyze','Analyzing alert…')">Analyze</button>
+                <button class="chip" onclick="quickChip('explain','Explaining risk…')">Risk score</button>
+                <button class="chip" onclick="quickChip('recommend','Recommending steps…')">Next steps</button>
+                <button class="chip" onclick="quickChip('sar','Drafting SAR…')">SAR draft</button>
+              </div>
+              <div class="ai-input-row">
+                <input type="text" id="aiChatInput" placeholder="Ask the assistant about this case…">
+                <button class="ai-send-btn" onclick="sendAIChat()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/case.js"></script>
+</body>
+</html>
